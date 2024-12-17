@@ -1,0 +1,45 @@
+/* Styles de base pour la navbar */
+nav {
+    background-color: #007bff; /* Couleur de fond bleu */
+    padding: 10px 20px; /* Espacement interne */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Liste non ordonnée pour les liens */
+  nav ul {
+    list-style-type: none; /* Supprime les puces */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* Espacement entre les éléments */
+  }
+  
+  /* Style des liens */
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Animation pour le survol */
+  }
+  
+  nav a:hover {
+    color: #ffc107; /* Couleur jaune au survol */
+  }
+  
+  /* Option pour une navbar réactive */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
