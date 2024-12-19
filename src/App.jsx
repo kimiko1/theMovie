@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { MoviesContext } from './context/MoviesContext';
 import MovieCard from './Components/MovieCard';
-import MovieDetails from './Components/MovieDetails';
 
 function App() {
   const { movies, searchResults, query, setQuery, handleSearch } = useContext(MoviesContext);
@@ -40,7 +39,6 @@ function App() {
             </main>
           }
         />
-        <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </div>
   );
