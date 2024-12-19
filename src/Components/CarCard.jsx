@@ -6,11 +6,10 @@ import { useEffect, useState } from "react";
 
 export const CarCard = ({ image, marque, modele, couleur, prix, annee, owner }) => {
     const [carOwner, setCarOwner] = useState([]);
-    console.log("🚀 ~ carOwner:", carOwner);
 
     if(owner !== undefined) {
         useEffect(() => {
-            axios.get(`http://localhost:3002/user/${owner}`)
+            axios.get(`https://node-intro-a9xe.onrender.com/user/${owner}`)
                 .then((res) => setCarOwner(res.data))
                 .catch((err) => console.error("Error fetching user:", err));
         }, [owner]);

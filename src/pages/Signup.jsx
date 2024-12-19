@@ -27,7 +27,7 @@ const Signup = () => {
 
     try {
       // Appel API pour créer un utilisateur
-      const response = await axios.post("http://localhost:3002/register", {
+      const response = await axios.post("https://node-intro-a9xe.onrender.com/register", {
         email,
         name,
         last_name: lastName,

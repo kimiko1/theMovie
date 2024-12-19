@@ -15,7 +15,7 @@ export const Cars = () => {
     }
 
     axios
-      .get("http://localhost:3002/cars", {
+      .get("https://node-intro-a9xe.onrender.com/cars", {
         headers: {
           Authorization: `Bearer ${token}`, // Envoi du token dans l'en-tête
         },
