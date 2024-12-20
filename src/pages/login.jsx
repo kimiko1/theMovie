@@ -14,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3002/login", {
+      const response = await axios.post("https://node-intro-a9xe.onrender.com/login", {
         email,
         password,
       });

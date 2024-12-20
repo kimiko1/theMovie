@@ -14,7 +14,7 @@ export const UsersProvider = ({ children }) => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3002/users'); // URL de ton API
+      const response = await axios.get('https://node-intro-a9xe.onrender.com/users'); // URL de ton API
       setUsers(response.data); // Met à jour la liste des utilisateurs
       setLoading(false);
     } catch (err) {
@@ -31,7 +31,7 @@ export const UsersProvider = ({ children }) => {
   // Fonction pour supprimer un utilisateur
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3002/user/${id}`); // Appel à l'API pour supprimer un utilisateur
+      await axios.delete(`https://node-intro-a9xe.onrender.com/user/${id}`); // Appel à l'API pour supprimer un utilisateur
       fetchUsers(); // Met à jour la liste des utilisateurs après suppression
     } catch (err) {
       setError('Failed to delete user');
@@ -45,7 +45,7 @@ export const UsersProvider = ({ children }) => {
       return;
     }
     try {
-      await axios.put(`http://localhost:3002/user/${id}`, updatedUser);
+      await axios.put(`https://node-intro-a9xe.onrender.com/user/${id}`, updatedUser);
       fetchUsers(); // Met à jour la liste des utilisateurs après modification
     } catch (err) {
       setError('Failed to update user');
