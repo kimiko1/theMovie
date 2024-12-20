@@ -9,7 +9,7 @@ export const CarCard = ({ image, marque, modele, couleur, prix, annee, owner }) 
 
     if(owner !== undefined) {
         useEffect(() => {
-            axios.get(`https://node-intro-a9xe.onrender.com/user/${owner}`)
+            axios.get(`http://localhost:3002/user/${owner}`)
                 .then((res) => setCarOwner(res.data))
                 .catch((err) => console.error("Error fetching user:", err));
         }, [owner]);

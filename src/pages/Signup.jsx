@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../css/Signup.css";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Signup = () => {
 
     try {
       // Appel API pour créer un utilisateur
-      const response = await axios.post("https://node-intro-a9xe.onrender.com/register", {
+      const response = await axios.post("http://localhost:3002/register", {
         email,
         name,
         last_name: lastName,
@@ -45,16 +46,17 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h1>Créer un compte</h1>
+    <div className="signup-container">
+      <h1 className="signup-title">Sign Up</h1>
 
       {/* Affichage des erreurs */}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="signup-error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Nom</label>
+          <label className="signup-label" htmlFor="name">Nom</label>
           <input
+            className="signup-input"
             type="text"
             id="name"
             value={name}
@@ -64,8 +66,9 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="lastName">Prénom</label>
+          <label className="signup-label" htmlFor="lastName">Prénom</label>
           <input
+            className="signup-input"
             type="text"
             id="lastName"
             value={lastName}
@@ -75,8 +78,9 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="email">Email</label>
+          <label className="signup-label" htmlFor="email">Email</label>
           <input
+            className="signup-input"
             type="email"
             id="email"
             value={email}
@@ -86,8 +90,9 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="password">Mot de passe</label>
+          <label className="signup-label" htmlFor="password">Mot de passe</label>
           <input
+            className="signup-input"
             type="password"
             id="password"
             value={password}
@@ -97,8 +102,9 @@ const Signup = () => {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
+          <label className="signup-label" htmlFor="confirmPassword">Confirmer le mot de passe</label>
           <input
+            className="signup-input"
             type="password"
             id="confirmPassword"
             value={confirmPassword}
@@ -107,7 +113,7 @@ const Signup = () => {
           />
         </div>
 
-        <button type="submit">Créer un compte</button>
+        <button className="signup-button" type="submit">Créer un compte</button>
       </form>
     </div>
   );

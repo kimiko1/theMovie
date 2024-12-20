@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { jwtDecode } from "jwt-decode";
 
 // Création du contexte d'authentification
 const AuthContext = createContext();
@@ -7,13 +8,18 @@ const AuthContext = createContext();
 export const AuthController = ({ children }) => {
   // Initialisation du token à partir de localStorage
   const [token, setToken] = useState(() => localStorage.getItem("token"));
+  const [userRole, setUserRole] = useState(null); // Ajouter un état pour stocker le rôle de l'utilisateur
 
-  // Effet pour synchroniser le token avec localStorage
+  // Effet pour synchroniser le token avec localStorage et décoder le rôle de l'utilisateur
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
+      // Décoder le token pour récupérer le rôle de l'utilisateur
+      const decoded = jwtDecode(token);
+      setUserRole(decoded.role); // Stocker le rôle dans l'état
     } else {
       localStorage.removeItem("token");
+      setUserRole(null); // Réinitialiser le rôle si le token est supprimé
     }
   }, [token]);
 
@@ -30,8 +36,9 @@ export const AuthController = ({ children }) => {
     token,
     setToken,
     isAuthenticated,
+    userRole, // Ajouter userRole au contexte
     logout
-  }), [token, isAuthenticated]);
+  }), [token, isAuthenticated, userRole]);
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -4,13 +4,16 @@ import NavBar from "./Components/NavBar";
 import { MoviesController } from "./context/MoviesContext";
 import MovieDetails from "./Components/MovieDetails";
 import { Cars } from "./pages/Cars";
-import Login from "./pages/login"; 
+import Login from "./pages/login";
 import { useAuth } from "./context/AuthContext";
 import Logout from "./pages/logout";
 import Signup from "./pages/Signup";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import UserDashboard from "./pages/admin/UsersDashboard";
+import { UsersProvider } from "./context/Admin/UsersContext";
 
 const Router = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, userRole } = useAuth();
 
   return (
     <>
@@ -29,6 +32,20 @@ const Router = () => {
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+
+        {/* Vérification du rôle utilisateur pour l'accès à /admin */}
+        <Route
+          path="/admin/*"
+          element={
+            isAuthenticated && userRole === "admin" ? (
+              <UsersProvider>
+                <AdminDashboard />
+              </UsersProvider>
+            ) : (
+              <h1>Access Denied</h1>
+            )
+          }
+        />
         <Route path="/*" element={<h1>Error page not found</h1>} />
       </Routes>
     </>

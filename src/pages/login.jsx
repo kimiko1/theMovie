@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext"; // Import du context
 import { useNavigate } from "react-router-dom";
+import "../css/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://node-intro-a9xe.onrender.com/login", {
+      const response = await axios.post("http://localhost:3002/login", {
         email,
         password,
       });
@@ -27,27 +28,27 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <label>Email:</label>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
+      {error && <p className="login-error">{error}</p>}
+      <form className="login-form" onSubmit={handleLogin}>
+        <label className="login-label">Email:</label>
         <input
+          className="login-input"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br />
-        <label>Password:</label>
+        <label className="login-label">Password:</label>
         <input
+          className="login-input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br />
-        <button type="submit">Login</button>
+        <button className="login-button" type="submit">Login</button>
       </form>
     </div>
   );
