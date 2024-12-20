@@ -9,8 +9,8 @@ import { useAuth } from "./context/AuthContext";
 import Logout from "./pages/logout";
 import Signup from "./pages/Signup";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import UserDashboard from "./pages/admin/UsersDashboard";
 import { UsersProvider } from "./context/Admin/UsersContext";
+import { CarsProvider } from "./context/Admin/CarsContext";
 
 const Router = () => {
   const { isAuthenticated, userRole } = useAuth();
@@ -39,7 +39,9 @@ const Router = () => {
           element={
             isAuthenticated && userRole === "admin" ? (
               <UsersProvider>
-                <AdminDashboard />
+                <CarsProvider>
+                  <AdminDashboard />
+                </CarsProvider>
               </UsersProvider>
             ) : (
               <h1>Access Denied</h1>
